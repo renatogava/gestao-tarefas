@@ -33,6 +33,10 @@ export class TaskService {
     this.saveToLocalStorage();
   }
 
+  updateTask(task: Task): void {
+    this.saveToLocalStorage();   
+  }
+
   removeTask(task: Task): void {
     const index: number = this.tasks.indexOf(task);
 

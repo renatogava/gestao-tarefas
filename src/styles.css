@@ -9,11 +9,10 @@
 :root {
     font-size: 100%;
     font-family: sans-serif;
-    --font-size-1: 2.25rem;
     --font-size-2: 1.75rem;
     --font-size-3: 1.25rem;
     --font-size-4: 1rem;
-    --font-size-5: .75rem;
+    --font-size-5: .85rem;
     --color-blue-1: #33489D;
     --color-blue-2: #141E41;
     --color-blue-3: #283a81;
@@ -37,8 +36,7 @@ h1 {
 
 h2 {
     font-size: var(--font-size-4);
-    color: var(--color-black-5);
-    margin-bottom: 10px
+    color: var(--color-black-4);
 }
 
 p, a {

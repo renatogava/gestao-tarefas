@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../services/task.service';
+import { Task } from '../models/task';
 
 @Component({
   selector: 'app-task-details',
@@ -9,16 +10,34 @@ import { TaskService } from '../services/task.service';
 })
 export class TaskDetailsComponent {
 
-  constructor(private route: ActivatedRoute, private taskService: TaskService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private taskService: TaskService) { }
 
-  task: any;
+  task?: Task;
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
 
-    if (id !== null) {
-      this.task = this.taskService.getById(+id);
-    }
+    if (id === null)
+      this.navigateBack();
+
+    this.task = this.taskService.getById(+id!);
+
+    if (this.task === undefined)
+      this.navigateBack();
   }
 
+  updateTask() {
+    this.taskService.saveToLocalStorage();
+
+    this.navigateBack();
+  }
+
+  cancel() {
+    this.navigateBack();
+  }
+
+  private navigateBack(): void {
+    this.router.navigate(['/tasklist'], { relativeTo: this.route });
+  }
+  
 }
